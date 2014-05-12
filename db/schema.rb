@@ -11,13 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140512200123) do
+ActiveRecord::Schema.define(version: 20140512211412) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "addresses", force: true do |t|
+    t.string "line1"
+    t.string "order_id"
+  end
+
+  add_index "addresses", ["order_id"], name: "index_addresses_on_order_id", using: :btree
+
+  create_table "line_items", force: true do |t|
+    t.integer "order_id"
+    t.string  "description"
+  end
+
+  add_index "line_items", ["order_id"], name: "index_line_items_on_order_id", using: :btree
+
   create_table "magazines", force: true do |t|
     t.string "name"
+  end
+
+  create_table "orders", force: true do |t|
+    t.string "number"
   end
 
   create_table "subscribers", force: true do |t|

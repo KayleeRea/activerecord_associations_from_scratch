@@ -1,0 +1,13 @@
+<p class="order-id">
+    <%= @order.number %>
+</p>
+
+<p class="line-items">
+  <% @order.line_items.each do |line_item| %>
+  <%= line_item.description%>
+    <% end %>
+</p>
+
+<p class="address">
+  <%= @order.address.line1 %>
+</p>
